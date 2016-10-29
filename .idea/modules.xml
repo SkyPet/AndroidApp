@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GethAgain.iml" filepath="$PROJECT_DIR$/GethAgain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SkyPetAndroidApp.iml" filepath="$PROJECT_DIR$/SkyPetAndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/geth/geth.iml" filepath="$PROJECT_DIR$/geth/geth.iml" />
     </modules>

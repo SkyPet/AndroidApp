@@ -25,12 +25,16 @@ public class MainActivity extends AppCompatActivity {
         final TextView textbox = (TextView) findViewById(R.id.textbox);
 
         Context ctx = new Context();
-
         try {
             //Geth.newN
+            //Geth.testnetLightnodes()
+            ChainConfig testnet=Geth.getTestnetChainConfig();
+            //Node node = Geth.newNode(getFilesDir() + "/.ethereum", ;
             Node node = Geth.newNode(getFilesDir() + "/.ethereum", new NodeConfig());
-            node.start();
+            //Geth.
 
+            node.start();
+            textbox.append("config" + testnet.toString() + "\n");
             //Geth.bindContract()
            /* AccountManager am = Geth.newAccountManager(getFilesDir()+"/.ethereum", Geth.LightScryptN, Geth.LightScryptP);
             Account newAcc = am.newAccount("Creation password");
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             Geth.bindContract(myContract, "0x69De4ADbb566c1c68e8dB1274229adA4A3D9f8A8", andtheclient);*/
             //Geth.newEthereumClient()
             NodeInfo info = node.getNodeInfo();
-
+            
             textbox.append("My name: " + info.getName() + "\n");
             textbox.append("My address: " + info.getListenerAddress() + "\n");
             textbox.append("My protocols: " + info.getProtocols() + "\n\n");
@@ -70,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
             ec.subscribeNewHead(ctx, handler,  16);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
