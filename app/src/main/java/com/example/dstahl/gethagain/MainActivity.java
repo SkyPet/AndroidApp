@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             NodeInfo info = node.getNodeInfo();
 
-            textbox.append(SkyPet.toString()+"\n");
+            //textbox.append(SkyPet.toString()+"\n");
            // ReleaseOracle ro = new ReleaseOracle(myContract, ec);
            // ec.callContract(ctx, msg, -1);
             //SkyPet.trackNumberRecords(hashId).c[0];
