@@ -17,24 +17,25 @@ import com.example.dstahl.gethagain.SkyPet;
 import org.ethereum.geth.*;
 
 public class MainActivity extends AppCompatActivity {
-    private final static int TESTNET_NETWORK_ID = 2;
+    /*private final static int TESTNET_NETWORK_ID = 2;
     private final static boolean USE_TESTNET=false;
     private NodeConfig createTestnetConfiguration() {
         Enodes nodes = new Enodes(1);
         NodeConfig config = new NodeConfig();
         try {
-            nodes.set(0, Geth.newEnode("enode://d72af45ba9b60851a8077a4eb07700484b585e5f2e55024e0c93b7ec7d114f2e3fa3c8f3a3358f89da00a609f5a062415deb857ada863b8cdad02b0b0bc90da3@50.112.52.169:30301"));
+            //nodes.set(0, Geth.newEnode("enode://d72af45ba9b60851a8077a4eb07700484b585e5f2e55024e0c93b7ec7d114f2e3fa3c8f3a3358f89da00a609f5a062415deb857ada863b8cdad02b0b0bc90da3@50.112.52.169:30301"));
+            nodes.set(0, Geth.newEnode("enode://e58d5e26b3b630496ec640f2530f3e7fa8a8c7dfe79d9e9c4aac80e3730132b869c852d3125204ab35bb1b1951f6f2d40996c1034fd8c5a69b383ee337f02ddc@92.51.165.126:30303"));
             config.setBootstrapNodes(nodes);
             config.setEthereumChainConfig(Geth.getTestnetChainConfig());
             config.setEthereumGenesis(Geth.getTestnetGenesis());
             config.setEthereumTestnetNonces(true);
-            config.setEthereumNetworkID(TESTNET_NETWORK_ID);
+            config.setEthereumNetworkID(TESTNET_NETWORK_ID);//
             config.setMaxPeers(25);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return config;
-    }
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,64 +49,34 @@ public class MainActivity extends AppCompatActivity {
         try {
             Node node;
             //Geth.newN
-            if(USE_TESTNET){
+            /*if(USE_TESTNET){
                 node = Geth.newNode(getFilesDir() + "/.ethereum", createTestnetConfiguration());
             }
-            else{
-                node = Geth.newNode(getFilesDir() + "/.ethereum",new NodeConfig());
-            }
+            else{*/
+            node = Geth.newNode(getFilesDir() + "/.ethereum",new NodeConfig());
+            //}
             node.start();
 
-            //node.start();
-            //textbox.append("config" + testnet.toString() + "\n");
-            //Geth.bindContract()
-           /* AccountManager am = Geth.newAccountManager(getFilesDir()+"/.ethereum", Geth.LightScryptN, Geth.LightScryptP);
-            Account newAcc = am.newAccount("Creation password");
-            textbox.append("New: " + newAcc.getAddress().getHex() + "\n\n");
-            byte[] jsonAcc = am.exportKey(newAcc, "Creation password", "Export password");
-            textbox.append("Json: " + new String(jsonAcc) + "\n\n");
 
-            am.deleteAccount(newAcc, "Creation password");
-            textbox.append("Accs: " + am.getAccounts().size() + "\n\n");
 
-            Account impAcc = am.importKey(jsonAcc, "Export password", "Import password");
-            textbox.append("Imp: " + impAcc.getAddress().getHex() + "\n\n");*/
-            EthereumClient ec = node.getEthereumClient();
-            Address myAddress = Geth.newAddressFromHex("0x69De4ADbb566c1c68e8dB1274229adA4A3D9f8A8");
-            SkyPet myContract=new SkyPet(myAddress, ec);
-            String myTestHash="wassup";
-            BigInt myInt=myContract.trackNumberRecords(null, myTestHash.getBytes());
-            textbox.append("myint: "+myInt);
-            // /Geth.newEthereumClient()
-            //CallMsg msg=Geth.newCallMsg();
 
             NodeInfo info = node.getNodeInfo();
 
-            //textbox.append(SkyPet.toString()+"\n");
-           // ReleaseOracle ro = new ReleaseOracle(myContract, ec);
-           // ec.callContract(ctx, msg, -1);
-            //SkyPet.trackNumberRecords(hashId).c[0];
-            //CallOpts cO=Geth.newCallOpts();
-            //cO.setContext(ctx);//is this necessary?
-            //Interfaces iFs=Geth.newInterfaces(1);
-            //iFs.
-            //iF.setAddress(myContract);
-            //SkyPet.call(cO, iF, "trackNumberRecords", iF);
-            //SkyPet.call()
 
             textbox.append("My name: " + info.getName() + "\n");
             textbox.append("My address: " + info.getListenerAddress() + "\n");
             textbox.append("My protocols: " + info.getProtocols() + "\n\n");
 
 
-            textbox.append("Latest block: " + ec.getBlockByNumber(ctx, -1).getNumber() + ", syncing...\n");
-            //Address myContract = Geth.newAddressFromHex("0x69De4ADbb566c1c68e8dB1274229adA4A3D9f8A8");
-            //ec.callContract()
-            //Geth.bindContract(myContract, "0x69De4ADbb566c1c68e8dB1274229adA4A3D9f8A8", ec);
-            //callMsg?
-            //Geth.
-           // ec.callContract(ctx, )
 
+
+            EthereumClient ec = node.getEthereumClient();
+            /*Address myAddress = Geth.newAddressFromHex("0x69De4ADbb566c1c68e8dB1274229adA4A3D9f8A8");
+            SkyPet myContract=new SkyPet(myAddress, ec);
+            String myTestHash="0xf65cbc6391f5a2834478811d9c811b83f51fda4fc030462b9c08776fb6d78751";
+            BigInt myInt=myContract.trackNumberRecords(null, myTestHash.getBytes());
+            textbox.append("myint: "+myInt);*/
+            textbox.append("Latest block: " + ec.getBlockByNumber(ctx, -1).getNumber() + ", syncing...\n");
             NewHeadHandler handler = new NewHeadHandler() {
                 @Override public void onError(String error) { }
                 @Override public void onNewHead(final Header header) {
