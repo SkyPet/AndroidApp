@@ -8,3 +8,4 @@ Remember to create and generate abi class for binding VM.  To install, clone go-
 
 
 `~/Documents/go/bin/abigen --abi SkyPetAbi.abi --pkg com.example.dstahl.gethagain --type SkyPet --lang java --out SkyPet.java` 
+`adb install app-release.apk`
