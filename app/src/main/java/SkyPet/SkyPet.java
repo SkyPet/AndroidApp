@@ -2,7 +2,7 @@
 // This file is an automatically generated Java binding. Do not modify as any
 // change will likely be lost upon the next re-generation!
 
-package com.example.dstahl.gethagain;
+package SkyPet;
 
 import org.ethereum.geth.*;
 //import org.ethereum.geth.internal.*;
@@ -13,20 +13,36 @@ import org.ethereum.geth.*;
 		public final static String ABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"trackNumberRecords\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_petid\",\"type\":\"bytes32\"},{\"name\":\"_type\",\"type\":\"uint256\"},{\"name\":\"_attribute\",\"type\":\"string\"},{\"name\":\"_isEncrypted\",\"type\":\"bool\"}],\"name\":\"addAttribute\",\"outputs\":[],\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"kill\",\"outputs\":[],\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"getRevenue\",\"outputs\":[],\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"pet\",\"outputs\":[{\"name\":\"timestamp\",\"type\":\"uint256\"},{\"name\":\"typeAttribute\",\"type\":\"uint256\"},{\"name\":\"attributeText\",\"type\":\"string\"},{\"name\":\"isEncrypted\",\"type\":\"bool\"}],\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"costToAdd\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"type\":\"function\"},{\"inputs\":[],\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"_petid\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"_type\",\"type\":\"uint256\"}],\"name\":\"attributeAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"_petid\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"error\",\"type\":\"string\"}],\"name\":\"attributeError\",\"type\":\"event\"}];";
 
 		
+			// BYTECODE is the compiled bytecode used for deploying new contracts.
+			public final static byte[] BYTECODE = "0x606060405236156100615760e060020a60003504633d75f38e81146100695780633e9646081461008157806341c0e1b51461014c57806348d7d9eb1461017457806349bd3632146101b55780638da5cb5b146101ec578063bd7c47ef146101fe575b61020d610002565b61021160043560026020526000908152604090205481565b604080516020604435600481810135601f810184900484028501840190955284845261020d9481359460248035959394606494929391019181908401838280828437509496505093359350505050600067016345785d8a000034101561033f5760408051868152602081018290526010818301527f546f6f206c6974746c6520457468657200000000000000000000000000000000606082015290517f6398430e477977a735def2d6ebd67c4150d45f71afa942462e80c6fb93eacc679181900360800190a1610338565b61020d60005433600160a060020a039081169116141561020f57600054600160a060020a0316ff5b61020d60005433600160a060020a039081169116141561020f5760008054604051600160a060020a0391821692913016319082818181858883f15050505050565b6001602081815260043560009081526040808220909252602435815220805491810154600382015461022393926002019060ff1684565b6102c4600054600160a060020a031681565b61021167016345785d8a000081565b005b565b60408051918252519081900360200190f35b604080518581526020810185905282151560608201526080918101828152845460026001821615610100026000190190911604928201839052909160a0830190859080156102b25780601f10610287576101008083540402835291602001916102b2565b820191906000526020600020905b81548152906001019060200180831161029557829003601f168201915b50509550505050505060405180910390f35b60408051600160a060020a03929092168252519081900360200190f35b505060609190910151600391909101805460ff191690911790555b604080518681526020810186905281517f30fc589131c3a81872fe9533fe7171a6abdff19eed25678440984470564b1ef8929181900390910190a15b5050505050565b5067016345785d89ffff19340160008111156103765760405133600160a060020a031690600090839082818181858883f150505050505b600085815260026020526040812054111561043857604060008181205482516080810184524281526020818101898152828601898152606084018990528b8652600180845287872095875294835295852083518155905181850155945180516002878101805481895297859020959897909681161561010002600019011604601f90810184900485019491939192909101908390106104e257805160ff19168380011785555b506105129291505b808211156105465760008155600101610424565b600085815260026020818152604080842060019081905581516080810183524281528084018a81528184018a8152606083018a90528c8852838652848820888052865293872082518155905181840155925180518487018054818a529887902093989597909694861615610100026000190190951694909404601f90810184900483019493919091019083901061054a57805160ff19168380011785555b506102e1929150610424565b8280016001018555821561041c579182015b8281111561041c5782518260005055916020019190600101906104f4565b505060609190910151600391909101805460ff191690911790556000858152600260205260409020805460010190556102fc565b5090565b828001600101855582156104d6579182015b828111156104d657825182600050559160200191906001019061055c56".getBytes();
+
+			// deploy deploys a new Ethereum contract, binding an instance of SkyPet to it.
+			public static SkyPet deploy(TransactOpts auth, EthereumClient client) throws Exception {
+				Interfaces args = Geth.newInterfaces(0);
+				
+				return new SkyPet(Geth.deployContract(auth, ABI, BYTECODE, client, args));
+			}
+
+			// Internal constructor used by contract deployment.
+			private SkyPet(BoundContract deployment) {
+				this.Address  = deployment.getAddress();
+				this.Deployer = deployment.getDeployer();
+				this.Contract = deployment;
+			}
+		
 
 		// Ethereum address where this contract is located at.
-		public Address Address;
+		public final Address Address;
 
 		// Ethereum transaction in which this contract was deployed (if known!).
-		public Transaction Deployer;
+		public final Transaction Deployer;
 
 		// Contract instance bound to a blockchain address.
-		private BoundContract Contract;
+		private final BoundContract Contract;
 
 		// Creates a new instance of SkyPet, bound to a specific deployed contract.
 		public SkyPet(Address address, EthereumClient client) throws Exception {
-			Contract=Geth.bindContract(address, ABI, client);
-			//Address=address;
+			this(Geth.bindContract(address, ABI, client));
 		}
 
 		
