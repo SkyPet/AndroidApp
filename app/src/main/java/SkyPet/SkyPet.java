@@ -10,7 +10,7 @@ import org.ethereum.geth.*;
 
 	public class SkyPet {
 		// ABI is the input ABI used to generate the binding from.
-		public final static String ABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"trackNumberRecords\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_petid\",\"type\":\"bytes32\"},{\"name\":\"_type\",\"type\":\"uint256\"},{\"name\":\"_attribute\",\"type\":\"string\"},{\"name\":\"_isEncrypted\",\"type\":\"bool\"}],\"name\":\"addAttribute\",\"outputs\":[],\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"kill\",\"outputs\":[],\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"getRevenue\",\"outputs\":[],\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"pet\",\"outputs\":[{\"name\":\"timestamp\",\"type\":\"uint256\"},{\"name\":\"typeAttribute\",\"type\":\"uint256\"},{\"name\":\"attributeText\",\"type\":\"string\"},{\"name\":\"isEncrypted\",\"type\":\"bool\"}],\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"costToAdd\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"type\":\"function\"},{\"inputs\":[],\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"_petid\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"_type\",\"type\":\"uint256\"}],\"name\":\"attributeAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"_petid\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"error\",\"type\":\"string\"}],\"name\":\"attributeError\",\"type\":\"event\"}];";
+		public final static String ABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"trackNumberRecords\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"kill\",\"outputs\":[],\"payable\":false,\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"getRevenue\",\"outputs\":[],\"payable\":false,\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"pet\",\"outputs\":[{\"name\":\"timestamp\",\"type\":\"uint256\"},{\"name\":\"typeAttribute\",\"type\":\"uint8\"},{\"name\":\"attributeText\",\"type\":\"string\"}],\"payable\":false,\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"collectedRevenue\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"costToAdd\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_petid\",\"type\":\"bytes32\"},{\"name\":\"_type\",\"type\":\"uint8\"},{\"name\":\"_attribute\",\"type\":\"string\"}],\"name\":\"addAttribute\",\"outputs\":[],\"payable\":false,\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"type\":\"constructor\"},{\"payable\":false,\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"_petid\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"_type\",\"type\":\"uint8\"},{\"indexed\":false,\"name\":\"_attribute\",\"type\":\"string\"}],\"name\":\"attributeAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"_petid\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"error\",\"type\":\"string\"}],\"name\":\"attributeError\",\"type\":\"event\"}]";
 
 		
 			// BYTECODE is the compiled bytecode used for deploying new contracts.
@@ -45,6 +45,27 @@ import org.ethereum.geth.*;
 			this(Geth.bindContract(address, ABI, client));
 		}
 
+		
+			
+
+			// collectedRevenue is a free data retrieval call binding the contract method 0x8108fd0c.
+			//
+			// Solidity: function collectedRevenue() constant returns(uint256)
+			public BigInt collectedRevenue(CallOpts opts) throws Exception {
+				Interfaces args = Geth.newInterfaces(0);
+				
+
+				Interfaces results = Geth.newInterfaces(1);
+				Interface result0 = Geth.newInterface(); result0.setDefaultBigInt(); results.set(0, result0);
+				
+
+				if (opts == null) {
+					opts = Geth.newCallOpts();
+				}
+				this.Contract.call(opts, results, "collectedRevenue", args);
+				return results.get(0).getBigInt();
+				
+			}
 		
 			
 
@@ -94,25 +115,23 @@ import org.ethereum.geth.*;
 				public BigInt Timestamp;
 				public BigInt TypeAttribute;
 				public String AttributeText;
-				public boolean IsEncrypted;
 				
 			}
 			
 
 			// pet is a free data retrieval call binding the contract method 0x49bd3632.
 			//
-			// Solidity: function pet( bytes32,  uint256) constant returns(timestamp uint256, typeAttribute uint256, attributeText string, isEncrypted bool)
+			// Solidity: function pet( bytes32,  uint256) constant returns(timestamp uint256, typeAttribute uint8, attributeText string)
 			public PetResults pet(CallOpts opts, byte[] arg0, BigInt arg1) throws Exception {
 				Interfaces args = Geth.newInterfaces(2);
 				args.set(0, Geth.newInterface()); args.get(0).setBinary(arg0);
 				args.set(1, Geth.newInterface()); args.get(1).setBigInt(arg1);
 				
 
-				Interfaces results = Geth.newInterfaces(4);
+				Interfaces results = Geth.newInterfaces(3);
 				Interface result0 = Geth.newInterface(); result0.setDefaultBigInt(); results.set(0, result0);
-				Interface result1 = Geth.newInterface(); result1.setDefaultBigInt(); results.set(1, result1);
+				Interface result1 = Geth.newInterface(); result1.setDefaultUint8(); results.set(1, result1);
 				Interface result2 = Geth.newInterface(); result2.setDefaultString(); results.set(2, result2);
-				Interface result3 = Geth.newInterface(); result3.setDefaultBool(); results.set(3, result3);
 				
 
 				if (opts == null) {
@@ -122,9 +141,8 @@ import org.ethereum.geth.*;
 				
 					PetResults result = new PetResults();
 					result.Timestamp = results.get(0).getBigInt();
-					result.TypeAttribute = results.get(1).getBigInt();
+					result.TypeAttribute = results.get(1).getUint8();
 					result.AttributeText = results.get(2).getString();
-					result.IsEncrypted = results.get(3).getBool();
 					
 					return result;
 				
@@ -154,15 +172,14 @@ import org.ethereum.geth.*;
 		
 
 		
-			// addAttribute is a paid mutator transaction binding the contract method 0x3e964608.
+			// addAttribute is a paid mutator transaction binding the contract method 0xe6723ac2.
 			//
-			// Solidity: function addAttribute(_petid bytes32, _type uint256, _attribute string, _isEncrypted bool) returns()
-			public Transaction addAttribute(TransactOpts opts, byte[] _petid, BigInt _type, String _attribute, boolean _isEncrypted) throws Exception {
-				Interfaces args = Geth.newInterfaces(4);
+			// Solidity: function addAttribute(_petid bytes32, _type uint8, _attribute string) returns()
+			public Transaction addAttribute(TransactOpts opts, byte[] _petid, BigInt _type, String _attribute) throws Exception {
+				Interfaces args = Geth.newInterfaces(3);
 				args.set(0, Geth.newInterface()); args.get(0).setBinary(_petid);
-				args.set(1, Geth.newInterface()); args.get(1).setBigInt(_type);
+				args.set(1, Geth.newInterface()); args.get(1).setUint8(_type);
 				args.set(2, Geth.newInterface()); args.get(2).setString(_attribute);
-				args.set(3, Geth.newInterface()); args.get(3).setBool(_isEncrypted);
 				
 
 				return this.Contract.transact(opts, "addAttribute"	, args);
@@ -176,6 +193,16 @@ import org.ethereum.geth.*;
 				
 
 				return this.Contract.transact(opts, "getRevenue"	, args);
+			}
+		
+			// isOwner is a paid mutator transaction binding the contract method 0x8f32d59b.
+			//
+			// Solidity: function isOwner() returns(bool)
+			public Transaction isOwner(TransactOpts opts) throws Exception {
+				Interfaces args = Geth.newInterfaces(0);
+				
+
+				return this.Contract.transact(opts, "isOwner"	, args);
 			}
 		
 			// kill is a paid mutator transaction binding the contract method 0x41c0e1b5.

@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
             config.setEthereumEnabled(true);
             config.setEthereumChainConfig(Geth.testnetChainConfig());
             config.setEthereumGenesis(Geth.testnetGenesis());
-            config.setEthereumTestnetNonces(true);
+
+            //config.setEthereumTestnetNonces(true);
             config.setEthereumNetworkID(TESTNET_NETWORK_ID);//
             config.setMaxPeers(25);
         } catch (Exception e) {
