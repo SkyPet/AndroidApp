@@ -1,11 +1,8 @@
-Remember to create and generate abi class for binding VM.  To install, clone go-ethereum and fetch pull request 2977.  
-`git fetch origin pull/2977/head:pr-2977`
+Remember to create and generate abi class for binding VM. 
+`abigen --abi SkyPetAbi.abi --bin SkyPet.bin --pkg SkyPet --lang java --out SkyPet.java`
 
+Here "SkyPet.bin" is the bytecode for the smart contract.  There are some issues with this; see https://github.com/ethereum/go-ethereum/issues/3286. 
 
 `go get github.com/tools/godep`
 `$ cd $GOPATH/src/github.com/ethereum/go-ethereum`
 `$ godep go install ./cmd/abigen`
-
-
-`~/Documents/go/bin/abigen --abi SkyPetAbi.abi --pkg com.example.dstahl.gethagain --type SkyPet --lang java --out SkyPet.java` 
-`adb install app-release.apk`
