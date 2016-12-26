@@ -16,7 +16,7 @@ import SkyPet.*;
 */
 import org.ethereum.geth.*;
 public class MainActivity extends AppCompatActivity {
-    private final static int TESTNET_NETWORK_ID = 2;
+    private final static int TESTNET_NETWORK_ID = 3;
     private final static boolean USE_TESTNET=true;
 
 
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             //config.setEthereumTestnetNonces(true);
             config.setEthereumNetworkID(TESTNET_NETWORK_ID);//
             config.setMaxPeers(25);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 NodeConfig testConfig=createTestnetConfiguration();
                 //textbox.append(testConfig.getBootstrapNodes().toString() + "\n");
 
-                node = Geth.newNode(getFilesDir() + "/.ethereum", testConfig);
+                node = Geth.newNode(getFilesDir() + "/.ethereum/testnet", testConfig);
             }
             else {
                 node = Geth.newNode(getFilesDir() + "/.ethereum", new NodeConfig());
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         final TextView showresult = (TextView) findViewById(R.id.showresult);
         try {
-            Address myAddress = Geth.newAddressFromHex("0x69De4ADbb566c1c68e8dB1274229adA4A3D9f8A8");
+            Address myAddress = Geth.newAddressFromHex("0x72c1bba9cabab4040c285159c8ea98fd36372858");
             SkyPet myContract = new SkyPet(myAddress, ec);
             //String myTestHash="0xa665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3";
             BigInt myInt = myContract.costToAdd(null);
